@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -21,6 +22,16 @@ namespace YotesAPI.Controllers
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
+        }
+        /// <summary>
+        /// Create a yote
+        /// </summary>
+        /// <param name="createYoteDTO"></param>
+        /// <returns>created yote</returns>
+        [HttpPost]
+        public async Task<YoteDTO> CreateYote(CreateYoteDTO createYoteDTO)
+        {
+            return null;
         }
 
         [HttpGet]
