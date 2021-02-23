@@ -1,4 +1,4 @@
-﻿using Common.DTOs;
+﻿using Logic.DTOs;
 using Logic.Interfaces;
 using System;
 using System.Collections.Generic;

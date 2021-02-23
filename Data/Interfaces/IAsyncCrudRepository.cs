@@ -1,10 +1,10 @@
-﻿using Common.DataModels;
-using Data.Interfaces;
+﻿using Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Repositories.Interfaces
+namespace Data.Interfaces
 {
     public interface IAsyncCrudRepository<T, K> where T : IIdentifiable<K>
     {

@@ -1,19 +1,14 @@
-﻿using Common.DataModels;
-using Common.Repositories.Interfaces;
+﻿using Common.Exceptions;
 using Data.Interfaces;
+using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
-using Data.Models;
-using Data;
-using Common.Interfaces;
-using Common.Exceptions;
 
-namespace Common.Repositories
+namespace Data.Repositories
 {
     public class EfAsyncCrudRepository<C, T, K> : IAsyncCrudRepository<T, K> where C : DbContext where T : class, IIdentifiable<K>
     {
@@ -305,4 +300,3 @@ namespace Common.Repositories
         }
     }
 }
-//}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.DTOs
+namespace Logic.DTOs
 {
     public class CreateYoteDTO
     {

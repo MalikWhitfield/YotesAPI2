@@ -1,4 +1,4 @@
-﻿using Common.DTOs;
+﻿using Logic.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

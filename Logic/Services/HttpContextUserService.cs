@@ -1,15 +1,12 @@
-﻿using Common.Interfaces;
+﻿using Data.Interfaces;
 using Data.Models;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.Services
+namespace Logic.Services
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class HttpContextUserService : IUserService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;

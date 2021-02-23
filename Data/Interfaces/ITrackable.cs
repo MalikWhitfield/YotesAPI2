@@ -12,4 +12,3 @@ namespace Data.Interfaces
         string ModifiedBy { get; set; }
     }
 }
-

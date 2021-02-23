@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.Interfaces
+namespace Data.Interfaces
 {
     public interface IUserService
     {
