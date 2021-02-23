@@ -1,16 +1,15 @@
-﻿using Data.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.Models
+namespace Common.DTOs
 {
-    public class Meet : IIdentifiable<Guid>, ITrackable
+    public class MeetDTO
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
         public DateTime Date { get; set; }
         public string Location { get; set; }
+        public string Name { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public DateTime ModifiedAt { get; set; }

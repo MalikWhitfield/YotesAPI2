@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logic.Interfaces
+namespace Data.Interfaces
 {
     public interface IIdentifiable<K>
     {

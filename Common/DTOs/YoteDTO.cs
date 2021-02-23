@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Data.Models;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Data.Models
+namespace Common.DTOs
 {
-    public class Person
+    public class YoteDTO
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
