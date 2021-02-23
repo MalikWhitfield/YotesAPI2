@@ -12,7 +12,7 @@ namespace Data
         {
 
         }
-        public DbSet<Person> People { get; set; }
+        public DbSet<Yote> Yotes { get; set; }
         public DbSet<Meet> Meets { get; set; }
         public DbSet<Event> Events { get; set; }
     }
