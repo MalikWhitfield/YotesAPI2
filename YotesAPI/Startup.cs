@@ -41,7 +41,7 @@ namespace YotesAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                yoteContext.Database.Migrate();
+                //yoteContext.Database.Migrate();
             }
 
             app.UseHttpsRedirection();
