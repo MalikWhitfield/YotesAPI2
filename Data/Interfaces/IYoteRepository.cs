@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Data.Interfaces
 {
-    public interface IYoteRepository
+    public interface IYoteRepository : IAsyncCrudRepository<Yote, Guid>
     {
     }
 }

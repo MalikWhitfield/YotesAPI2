@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Logic.DTOs;
+using Logic.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -18,10 +20,11 @@ namespace YotesAPI.Controllers
         };
 
         private readonly ILogger<YoteController> _logger;
-
-        public YoteController(ILogger<YoteController> logger)
+        private readonly IYoteService _yoteService;
+        public YoteController(ILogger<YoteController> logger, IYoteService yoteService)
         {
             _logger = logger;
+            _yoteService = yoteService;
         }
         /// <summary>
         /// Create a yote
@@ -29,9 +32,12 @@ namespace YotesAPI.Controllers
         /// <param name="createYoteDTO"></param>
         /// <returns>created yote</returns>
         [HttpPost]
-        public async Task<YoteDTO> CreateYote(CreateYoteDTO createYoteDTO)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<YoteDTO>> CreateYote(CreateYoteDTO createYoteDTO)
         {
-            return null;
+            var yote = await _yoteService.CreateYote(createYoteDTO);
+            return CreatedAtAction(nameof(Get), new { id = yote.Id }, yote);
         }
 
         [HttpGet]

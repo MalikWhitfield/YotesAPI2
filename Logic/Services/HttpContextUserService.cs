@@ -26,6 +26,13 @@ namespace Logic.Services
         /// <returns></returns>
         public User GetCurrentUser()
         {
+            return new User()
+            {
+                UserId = "90562083-58dc-4d09-9bad-18133940877b",
+                FirstName = "Austin",
+                LastName = "Bach",
+                Role = "Admin"
+            };
             return _httpContextAccessor.HttpContext.User as User;
         }
     }
