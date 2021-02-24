@@ -12,6 +12,7 @@ namespace Logic.Interfaces
         Task<YoteDTO> GetYote(Guid id);
         Task<List<YoteDTO>> GetYotes();
         Task<YoteDTO> DeleteYote(Guid id);
+        Task<YoteDTO> DeactivateYote(Guid id);
         Task<YoteDTO> UpdateYote(YoteDTO yoteDTO);
     }
 }

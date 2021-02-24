@@ -49,9 +49,26 @@ namespace YotesAPI.Controllers
         } 
         
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<YoteDTO>>> GetAll()
         {
             return Ok(await _yoteService.GetYotes());
+        }
+        
+        [HttpPut("{id}/actions/deactivate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<YoteDTO>>> Delete([FromRoute] Guid id)
+        {
+            return Ok(await _yoteService.DeleteYote(id));
+        }        
+        [HttpPut("{id}/actions/deactivate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<YoteDTO>>> Deactivate([FromRoute] Guid id)
+        {
+            return Ok(await _yoteService.DeleteYote(id));
         }
     }
 }

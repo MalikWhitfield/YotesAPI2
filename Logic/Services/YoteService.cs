@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Common.Exceptions;
 using Data.Interfaces;
 using Data.Models;
 using Logic.DTOs;
@@ -45,8 +46,30 @@ namespace Logic.Services
         }
         public async Task<YoteDTO> DeleteYote(Guid id)
         {
-            return null;
+            var yote = await _yoteRepository.GetById(id);
+            if(yote == null)
+            {
+                throw new ResourceValidationException($"Yote with ID {id} not found.");
+            }
+            yote.IsDeleted = true;
+
+            await _yoteRepository.Update(yote);
+            return _mapper.Map<YoteDTO>(yote);
         }
+
+        public async Task<YoteDTO> DeactivateYote(Guid id)
+        {
+            var yote = await _yoteRepository.GetById(id);
+            if (yote == null)
+            {
+                throw new ResourceValidationException($"Yote with ID {id} not found.");
+            }
+            yote.IsActive = false;
+
+            await _yoteRepository.Update(yote);
+            return _mapper.Map<YoteDTO>(yote);
+        }
+
         public async Task<YoteDTO> UpdateYote(YoteDTO yoteDTO)
         {
             return null;
