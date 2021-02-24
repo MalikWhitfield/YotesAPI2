@@ -34,23 +34,24 @@ namespace YotesAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<YoteDTO>> CreateYote(CreateYoteDTO createYoteDTO)
+        public async Task<ActionResult<YoteDTO>> Create([FromBody] CreateYoteDTO createYoteDTO)
         {
             var yote = await _yoteService.CreateYote(createYoteDTO);
             return CreatedAtAction(nameof(Get), new { id = yote.Id }, yote);
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<YoteDTO>> Get([FromRoute] Guid id)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return Ok(await _yoteService.GetYote(id));
+        } 
+        
+        [HttpGet]
+        public async Task<ActionResult<List<YoteDTO>>> GetAll()
+        {
+            return Ok(await _yoteService.GetYotes());
         }
     }
 }

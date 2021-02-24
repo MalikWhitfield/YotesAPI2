@@ -30,11 +30,18 @@ namespace Logic.Services
         }
         public async Task<YoteDTO> GetYote(Guid id)
         {
-            return null;
+            return _mapper.Map<YoteDTO>(await _yoteRepository.GetById(id));
         }
         public async Task<List<YoteDTO>> GetYotes()
         {
-            return null;
+            var yotes = await _yoteRepository.GetAll();
+            var yoteDTOs = new List<YoteDTO>();
+
+            foreach (Yote yote in yotes.Results)
+            {
+                yoteDTOs.Add(_mapper.Map<YoteDTO>(yote));
+            }
+            return yoteDTOs;
         }
         public async Task<YoteDTO> DeleteYote(Guid id)
         {
@@ -52,6 +59,10 @@ namespace Logic.Services
         {
             CreateMap<CreateYoteDTO, Yote>();
             CreateMap<YoteDTO, Yote>().ReverseMap();
+            CreateMap<ListResults<YoteDTO>, ListResults<Yote>>().ReverseMap();
+            CreateMap<ListResults<Yote>, ListResults<YoteDTO>>().ReverseMap();
+            CreateMap<List<Yote>, List<YoteDTO>>().ReverseMap();
+            CreateMap<List<YoteDTO>, List<Yote>>().ReverseMap();
         }
     }
 }
