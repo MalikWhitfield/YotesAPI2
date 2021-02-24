@@ -47,10 +47,6 @@ namespace Logic.Services
         public async Task<YoteDTO> DeleteYote(Guid id)
         {
             var yote = await _yoteRepository.GetById(id);
-            if(yote == null)
-            {
-                throw new ResourceValidationException($"Yote with ID {id} not found.");
-            }
             yote.IsDeleted = true;
 
             await _yoteRepository.Update(yote);
@@ -60,19 +56,20 @@ namespace Logic.Services
         public async Task<YoteDTO> DeactivateYote(Guid id)
         {
             var yote = await _yoteRepository.GetById(id);
-            if (yote == null)
-            {
-                throw new ResourceValidationException($"Yote with ID {id} not found.");
-            }
             yote.IsActive = false;
 
             await _yoteRepository.Update(yote);
             return _mapper.Map<YoteDTO>(yote);
         }
 
-        public async Task<YoteDTO> UpdateYote(YoteDTO yoteDTO)
+        public async Task<YoteDTO> UpdateYote(Guid id, UpdateYoteDTO yoteDTO)
         {
-            return null;
+            var yoteToUpdate = await _yoteRepository.GetById(id);
+
+             _mapper.Map(yoteDTO, yoteToUpdate);
+
+            var updatedYote = _mapper.Map<YoteDTO>(await _yoteRepository.Update(yoteToUpdate));
+            return updatedYote;
         }
     }
 
@@ -81,6 +78,7 @@ namespace Logic.Services
         public YoteMappingProfile()
         {
             CreateMap<CreateYoteDTO, Yote>();
+            CreateMap<UpdateYoteDTO, Yote>().ReverseMap();
             CreateMap<YoteDTO, Yote>().ReverseMap();
             CreateMap<ListResults<YoteDTO>, ListResults<Yote>>().ReverseMap();
             CreateMap<ListResults<Yote>, ListResults<YoteDTO>>().ReverseMap();
