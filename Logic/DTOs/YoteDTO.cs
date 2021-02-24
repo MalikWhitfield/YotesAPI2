@@ -14,6 +14,9 @@ namespace Logic.DTOs
         public string Height { get; set; }
         public int? Weight { get; set; }
         public string Year { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime? YearGraduated { get; set; }
         public List<Event> Events { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }

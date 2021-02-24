@@ -27,6 +27,11 @@ namespace Data.Models
         [Required]
         [MaxLength(20)]
         public string Year { get; set; }
+        [MaxLength(30)]
+        public string EventGroup { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime? YearGraduated { get; set; }
         public List<Event> Events { get; set; }
         public DateTime CreatedAt { get; set; }
         [MaxLength(50)]
